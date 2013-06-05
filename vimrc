@@ -27,6 +27,14 @@ Bundle "bronson/vim-trailing-whitespace"
 Bundle "Lokaltog/vim-easymotion.git"
 Bundle "jeetsukumaran/vim-buffergator.git"
 
+" Pretty colors
+Bundle "larssmit/vim-getafe"
+Bundle "telamon/vim-color-github"
+Bundle "wgibbs/vim-irblack"
+Bundle "TechnoGate/janus-colors"
+Bundle "vim-scripts/Color-Sampler-Pack"
+Bundle "altercation/vim-colors-solarized"
+
 filetype plugin indent on     " required!
 " End of bundles
 
