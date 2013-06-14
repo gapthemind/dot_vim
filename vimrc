@@ -6,7 +6,7 @@
  call vundle#rc()
 
  " let Vundle manage Vundle
- " required! 
+ " required!
  Bundle 'gmarik/vundle'
 
 " Bundles
@@ -26,6 +26,7 @@ Bundle "benmills/vimux.git"
 Bundle "bronson/vim-trailing-whitespace"
 Bundle "Lokaltog/vim-easymotion.git"
 Bundle "jeetsukumaran/vim-buffergator.git"
+Bundle "sjl/gundo.vim"
 
 " Pretty colors
 Bundle "larssmit/vim-getafe"
@@ -125,3 +126,5 @@ nmap <silent> <Leader>ev :e $MYVIMRC<CR>
 nmap <silent> <Leader>sv :so $MYVIMRC<CR>
 
 set pastetoggle=<F2>
+" Map gundo to F5
+nnoremap <F5> :GundoToggle<CR>
