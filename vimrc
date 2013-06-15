@@ -27,6 +27,7 @@ Bundle "bronson/vim-trailing-whitespace"
 Bundle "Lokaltog/vim-easymotion.git"
 Bundle "jeetsukumaran/vim-buffergator.git"
 Bundle "zklinger/dbext"
+Bundle "sjl/gundo.vim"
 
 " Pretty colors
 Bundle "larssmit/vim-getafe"
@@ -139,3 +140,5 @@ set pastetoggle=<F2>
 
 " Use Ag for searching
 let g:ackprg = 'ag --nogroup --nocolor --column'
+" Map gundo to F5
+nnoremap <F5> :GundoToggle<CR>
