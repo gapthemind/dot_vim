@@ -1,13 +1,13 @@
- set nocompatible               " be iMproved
- filetype off                   " required!
+set nocompatible               " be iMproved
+filetype off                   " required!
 
 "  Vundle configuration
- set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
- " let Vundle manage Vundle
- " required! 
- Bundle 'gmarik/vundle'
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
 
 " Bundles
 Bundle "tpope/vim-rails"
@@ -26,6 +26,7 @@ Bundle "benmills/vimux.git"
 Bundle "bronson/vim-trailing-whitespace"
 Bundle "Lokaltog/vim-easymotion.git"
 Bundle "jeetsukumaran/vim-buffergator.git"
+Bundle "zklinger/dbext"
 
 " Pretty colors
 Bundle "larssmit/vim-getafe"
@@ -34,6 +35,8 @@ Bundle "wgibbs/vim-irblack"
 Bundle "TechnoGate/janus-colors"
 Bundle "vim-scripts/Color-Sampler-Pack"
 Bundle "altercation/vim-colors-solarized"
+Bundle "tpope/vim-vividchalk"
+Bundle "vim-scripts/calmar256-lightdark"
 
 filetype plugin indent on     " required!
 " End of bundles
@@ -48,15 +51,20 @@ endif
 " show numbers
 set number
 
+" Long lines are not wrapped. Helps me writting shorter lines
+set nowrap
+
 " set the leader key to ',' (easy to type)
 let mapleader = ","
+" set localleader to '\'
+let maplocalleader = '\'
 
 " You can type ;w instead of :w
 nnoremap ; :
 "
 set incsearch "Incremental search
 set hlsearch "Search highlight
-nnoremap <silent> <Leader>/ :nohlsearch<CR>
+nnoremap <Leader>h :set invhlsearch<CR>
 
 " 256-color terminal
 set t_Co=256
@@ -78,9 +86,6 @@ let g:ctrlp_working_path_mode = 0
 
 set laststatus=2
 
-" Use the same symtax for HAML and HAMLC
-au BufRead,BufNewFile *.hamlc set ft=haml
-
 " spaces, not tabs
 set expandtab
 set shiftwidth=2
@@ -88,11 +93,16 @@ set softtabstop=2
 
 " Quick save file
 inoremap <Leader>m <ESC>:w<CR>
-nnoremap <Leader>h :set invhlsearch<CR>
+noremap <Leader>m <ESC>:w<CR>
 
 inoremap <Leader>n <ESC>:NERDTreeToggle<CR>
 vnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>n :NERDTreeToggle<CR>
+
+" Allows for customisations in vimrc.local
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif
 
 " mapping for buffergator
 nnoremap <Leader>b :BuffergatorToggle<cr>
@@ -107,21 +117,25 @@ nnoremap <Leader>we :vertical resize +5<cr>
 nnoremap <Leader>ww :call ZoomWin()<cr><cr>
 
 " vimux
-map <Leader>tr :call VimuxRunCommand("zeus rspec " . bufname("%"))<CR>
-map <Leader>tl :call VimuxRunCommand("zeus rspec " . bufname("%") . ":" . line("."))<CR>
-map <Leader>ta :call VimuxRunCommand("zeus rspec spec")<CR>
-map <Leader>tt :VimuxRunLastCommand<CR>
-map <Leader>tq :VimuxCloseRunner<CR>
-map <Leader>tp :VimuxPromptCommand<CR>
+noremap <Leader>tr :call VimuxRunCommand("zeus rspec " . bufname("%"))<CR>
+noremap <Leader>tl :call VimuxRunCommand("zeus rspec " . bufname("%") . ":" . line("."))<CR>
+noremap <Leader>ta :call VimuxRunCommand("zeus rspec spec")<CR>
+noremap <Leader>tt :VimuxRunLastCommand<CR>
+noremap <Leader>tq :VimuxCloseRunner<CR>
+noremap <Leader>tp :VimuxPromptCommand<CR>
 " Quick save and run last command.
 inoremap <Leader>a <ESC>:w<CR>:VimuxRunLastCommand<CR>
+noremap <Leader>a :w<CR>:VimuxRunLastCommand<CR>
 
 " Tagbar
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'
-nmap <F8> :TagbarToggle<CR>
+nnoremap <F8> :TagbarToggle<CR>
 
 " Quickly edit/reload the vimrc file
-nmap <silent> <Leader>ev :e $MYVIMRC<CR>
-nmap <silent> <Leader>sv :so $MYVIMRC<CR>
+nnoremap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <silent> <Leader>sv :source $MYVIMRC<CR>
 
 set pastetoggle=<F2>
+
+" Use Ag for searching
+let g:ackprg = 'ag --nogroup --nocolor --column'

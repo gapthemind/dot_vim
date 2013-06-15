@@ -1,0 +1,34 @@
+"Fast editing of vim local
+nnoremap <silent> <Leader>el :vsplit ~/.vimrc.local<CR>
+" Some shortcut mappings
+" - moves line down
+nnoremap - ddp
+" _ moves line up
+nnoremap _ ddkP
+" Control U in insert and normal mode uppercases the current word
+inoremap <c-u> <esc>bveUi
+nnoremap <c-u> bveU
+" leader " and ' wrap word in quotes
+noremap <leader>" bi"<esc>wea"<esc>
+noremap <leader>' bi'<esc>wea'<esc>
+" In visual mode they surround the selected text
+vnoremap <leader>" v`>a"<esc>`<i"<esc>
+vnoremap <leader>' v`>a'<esc>`<i'<esc>
+" Faster line navigation
+nnoremap H ^
+noremap L $
+" Operator pending counterparts
+onoremap H ^
+vnoremap H ^
+onoremap L $
+vnoremap L $
+" Faster <esc> with jk
+inoremap jk <esc>
+
+augroup autocmd my_ruby_commands
+  autocmd!
+  " Operator pending "fd"
+  " search for ?\ +def\
+  " and visualy select method name word
+  autocmd FileType ruby onoremap fd :<c-u>execute "normal! ?^ \\+def \r:nohlsearch\rwwve"<cr>
+augroup END

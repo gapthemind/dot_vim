@@ -7,15 +7,19 @@
    ```
    $ ln -s ~/.vim/vimrc ~/.vimrc
    ```
+3. Optionally add extra mappings, if you like what you see
+   ```
+   $ ln -s ~/.vim/vimrc.local ~/.vimrc.local
+   ```
 
-3. Setup [Vundle]:
+4. Setup [Vundle]:
 
    ```
    $ cd .vim
    $ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
    ```
 
-4. Install plugins 
+5. Install plugins 
    ```
    vim +BundleInstall +qall
    ```
