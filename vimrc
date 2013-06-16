@@ -28,6 +28,7 @@ Bundle "Lokaltog/vim-easymotion.git"
 Bundle "jeetsukumaran/vim-buffergator.git"
 Bundle "zklinger/dbext"
 Bundle "sjl/gundo.vim"
+Bundle 'christoomey/vim-tmux-navigator'
 
 " Pretty colors
 Bundle "larssmit/vim-getafe"
@@ -37,7 +38,6 @@ Bundle "TechnoGate/janus-colors"
 Bundle "vim-scripts/Color-Sampler-Pack"
 Bundle "altercation/vim-colors-solarized"
 Bundle "tpope/vim-vividchalk"
-Bundle "vim-scripts/calmar256-lightdark"
 
 filetype plugin indent on     " required!
 " End of bundles
