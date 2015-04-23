@@ -16,28 +16,23 @@ Bundle "tpope/vim-commentary"
 Bundle "tpope/vim-surround"
 Bundle "tpope/vim-fugitive"
 Bundle "tpope/vim-endwise"
-Bundle "scrooloose/nerdtree"
+Bundle "tpope/vim-vinegar"
 Bundle "ervandew/supertab"
-Bundle "kien/ctrlp.vim"
-Bundle "Lokaltog/vim-powerline"
+Bundle "bling/vim-airline"
 Bundle "mileszs/ack.vim"
 Bundle "rphillips/vim-zoomwin"
 Bundle "benmills/vimux.git"
 Bundle "bronson/vim-trailing-whitespace"
-Bundle "Lokaltog/vim-easymotion.git"
 Bundle "jeetsukumaran/vim-buffergator.git"
-Bundle "zklinger/dbext"
 Bundle "sjl/gundo.vim"
 Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'othree/html5.vim'
+Bundle 'vim-ruby/vim-ruby'
+Bundle "pangloss/vim-javascript"
+Bundle 'miyakogi/conoline.vim'
 
-" Pretty colors
-Bundle "larssmit/vim-getafe"
-Bundle "telamon/vim-color-github"
-Bundle "wgibbs/vim-irblack"
-Bundle "TechnoGate/janus-colors"
-Bundle "vim-scripts/Color-Sampler-Pack"
 Bundle "altercation/vim-colors-solarized"
-Bundle "tpope/vim-vividchalk"
+Bundle "'thoughtbot/pick.vim"
 
 filetype plugin indent on     " required!
 " End of bundles
@@ -69,7 +64,6 @@ nnoremap <Leader>h :set invhlsearch<CR>
 
 " 256-color terminal
 set t_Co=256
-
 " utf-8 by default
 set encoding=utf-8
 
@@ -82,9 +76,6 @@ set nowritebackup
 " no .swp files
 set noswapfile
 
-" Control +  P for fuzzy file open
-let g:ctrlp_working_path_mode = 0
-
 set laststatus=2
 
 " spaces, not tabs
@@ -92,20 +83,16 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-" Quick save file
+" Quick save file: ,m saves file
 inoremap <Leader>m <ESC>:w<CR>
 noremap <Leader>m <ESC>:w<CR>
 
-inoremap <Leader>n <ESC>:NERDTreeToggle<CR>
-vnoremap <Leader>n :NERDTreeToggle<CR>
-nnoremap <Leader>n :NERDTreeToggle<CR>
-
-" Allows for customisations in vimrc.local
+" Allows for customisations in vimrc local files
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
 endif
 
-" mapping for buffergator
+" mapping for buffergator: ,b opens buffer list
 nnoremap <Leader>b :BuffergatorToggle<cr>
 
 " resize current buffer by +/- 5
@@ -114,7 +101,7 @@ nnoremap <Leader>ws :resize +5<cr>
 nnoremap <Leader>w2 :resize -5<cr>
 nnoremap <Leader>we :vertical resize +5<cr>
 
-" zoom buffer
+" zoom buffer: ,ww zooms into the current buffer
 nnoremap <Leader>ww :call ZoomWin()<cr><cr>
 
 " vimux
@@ -128,17 +115,46 @@ noremap <Leader>tp :VimuxPromptCommand<CR>
 inoremap <Leader>a <ESC>:w<CR>:VimuxRunLastCommand<CR>
 noremap <Leader>a :w<CR>:VimuxRunLastCommand<CR>
 
-" Tagbar
-let g:tagbar_ctags_bin='/usr/local/bin/ctags'
-nnoremap <F8> :TagbarToggle<CR>
-
-" Quickly edit/reload the vimrc file
-nnoremap <silent> <Leader>ev :vsplit $MYVIMRC<CR>
-nnoremap <silent> <Leader>sv :source $MYVIMRC<CR>
-
 set pastetoggle=<F2>
 
 " Use Ag for searching
 let g:ackprg = 'ag --nogroup --nocolor --column'
 " Map gundo to F5
 nnoremap <F5> :GundoToggle<CR>
+
+" airline configuration
+" remove separators
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+" set second section to filename
+let g:airline_section_b="%f"
+" empty third and fourth sections
+let g:airline_section_c=""
+let g:airline_section_x=""
+" put filetype in fifth section
+let g:airline_section_y="%Y"
+
+inoremap <C-n> <ESC>:cnext<CR>
+nnoremap <C-n> :cnext<CR>
+inoremap <C-a> <ESC>:cprev<CR>
+nnoremap <C-a> :cprev<CR>
+
+set background=light
+colorscheme solarized
+
+" Faster line navigation
+nnoremap H ^
+
+" Operator pending counterparts
+onoremap H ^
+vnoremap H ^
+onoremap L $
+vnoremap L $
+noremap L $
+
+" Fast searching
+nnoremap <leader>f :execute ':silent Ack!' shellescape(expand("<cword>")) <cr>
+nnoremap <leader>r :execute ':silent Ack!' shellescape(expand("(def\|class\|module) (self.)?<cword>")) <cr>
+
+" Faster <esc> with jk
+inoremap jk <esc>
