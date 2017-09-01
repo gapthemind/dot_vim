@@ -30,9 +30,13 @@ Bundle 'othree/html5.vim'
 Bundle 'vim-ruby/vim-ruby'
 Bundle "pangloss/vim-javascript"
 Bundle 'miyakogi/conoline.vim'
+Bundle 'chriskempson/base16-vim'
 
 Bundle "altercation/vim-colors-solarized"
-Bundle "'thoughtbot/pick.vim"
+Bundle "thoughtbot/pick.vim"
+
+" Bundle "scrooloose/syntastic"
+Plugin 'w0rp/ale'
 
 filetype plugin indent on     " required!
 " End of bundles
@@ -63,7 +67,7 @@ set hlsearch "Search highlight
 nnoremap <Leader>h :set invhlsearch<CR>
 
 " 256-color terminal
-set t_Co=256
+"set t_Co=256
 " utf-8 by default
 set encoding=utf-8
 
@@ -141,7 +145,6 @@ nnoremap <C-a> :cprev<CR>
 
 set background=light
 colorscheme solarized
-
 " Faster line navigation
 nnoremap H ^
 
@@ -158,3 +161,5 @@ nnoremap <leader>r :execute ':silent Ack!' shellescape(expand("(def\|class\|modu
 
 " Faster <esc> with jk
 inoremap jk <esc>
+"status line colours
+:hi StatusLineNC ctermfg=2 ctermbg=8 cterm=NONE
